@@ -100,7 +100,7 @@ user node[:erbbit][:erbbituser] do
  action :create
 end
 
-#Run Bundle Install and related
+#Run Bundle Install and related - needs to run as root/sudo since otherwise won't install
 execute "rakebootstrap" do
  command "export ERRBIT_ADMIN_EMAIL=#{node[:erbbit][:adminemail]} && export ERRBIT_ADMIN_USER=#{node[:erbbit][:adminuser]} && export ERRBIT_ADMIN_PASSWORD=#{node[:erbbit][:adminpass]} && bundle exec rake errbit:bootstrap && chown #{node[:erbbit][:erbbituser]}.#{node[:erbbit][:erbbitgroup]} -R ."
  cwd "#{node[:erbbit][:erbbitinstalldir]}/httpdocs"
