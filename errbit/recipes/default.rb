@@ -124,9 +124,16 @@ git "#{node[:erbbit][:erbbitinstalldir]}/httpdocs" do
  group node[:erbbit][:erbbitgroup]
 end
 
+#Takes some time for the rails app to boot, need some sleep otherwise one test will fail
+execute "sleepywait" do
+ command "sleep 15"
+ action :nothing
+end
+
 #Create Service
 service "erbbit.service" do
  subscribes :enable, "template[/usr/lib/systemd/system/erbbit.service]", :immediately
+ notifies :run, 'execute[sleepywait]', :immediately
  action :nothing
 end
 
