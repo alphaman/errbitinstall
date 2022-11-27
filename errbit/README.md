@@ -1,9 +1,20 @@
 # errbit
 
 tests:
- - MongoDB - started, enabled, listening on port +, installed +
- - Erbbit - user/group created, listening on port +, installed +
- - Ruby - check ruby version 2.7.6
+ - Git:
+  -- installed
+ - MongoDB:
+  -- started
+  -- enabled
+  -- listening on port
+  -- installed 
+ - Erbbit
+   -- user created
+   -- listening on port
+   -- started
+   -- enabled
+ - Ruby:
+  -- check ruby version 2.7.6
 
  attributes located in attributes->default
 
