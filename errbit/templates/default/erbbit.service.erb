@@ -1,0 +1,16 @@
+[Unit]
+Description=erbbit
+Requires=network.target
+
+[Service]
+Type=simple
+User=<%= node[:erbbit][:erbbituser] %>
+Group=<%= node[:erbbit][:erbbitgroup] %>
+WorkingDirectory= <%= node[:erbbit][:erbbitinstalldir] %>/httpdocs
+ExecStart=/usr/bin/bash -lc 'bundle exec rails server -e production --bind 0.0.0.0 --port <%= node[:erbbit][:port] %>'
+TimeoutSec=30
+RestartSec=15s
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

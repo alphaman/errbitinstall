@@ -1,0 +1,27 @@
+---
+driver:
+  name: vagrant
+
+driver_config:
+  requre_chef_omnibus: true
+  network:
+  - [ "forwarded_port", { guest: 8080, host: 8080}]
+
+provisioner:
+  name: chef_infra
+  log_level: info
+  always_update_cookbooks: true
+
+verifier:
+  name: inspec
+
+platforms:
+  - name: ubuntu-20.04
+
+suites:
+  - name: erbbit
+    verifier:
+      inspec_tests:
+        - test/integration/default
+    run_list:
+      - recipe[erbbit::default]
