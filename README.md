@@ -1,3 +1,3 @@
 # erbbit-install
 
-Documentation in erbbit directory
+Documentation in errbit directory
